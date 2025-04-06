@@ -1,9 +1,10 @@
 <script setup lang="ts">
 definePageMeta({
-  middleware: ["authenticated"]
+  middleware: ["authenticated", "role-auth"],
+  allowedRoles: ["admin", "moderator"]
 })
 
-const { data: userData, refresh } = useFetch("/api/users")
+const { data: userData, refresh } = await useFetch("/api/users")
 const newUser = reactive(
   {
     username: '',
